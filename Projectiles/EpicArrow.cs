@@ -9,7 +9,6 @@ namespace LootBags.Projectiles
 {
     public class EpicArrow : ModProjectile
     {
-        int Timer;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Epic Arrow");     //The English name of the projectile
@@ -21,19 +20,13 @@ namespace LootBags.Projectiles
             projectile.height = 38;
             projectile.friendly = true;
             projectile.ranged = true;
-            projectile.penetrate = 4;
+            projectile.penetrate = 1;
             projectile.timeLeft = 600;
             projectile.tileCollide = true;
         }
 
         public override void AI()
         {
-            Timer++;
-            if (Timer == 10)
-            {
-                Timer = 0;
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, mod.ProjectileType("EpicTrail"), projectile.damage / 2, 0, Main.myPlayer, 0f, 0f); //Spawning a projectile
-            }
 
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
 
@@ -45,10 +38,14 @@ namespace LootBags.Projectiles
 
         }
 
-        public override bool OnTileCollide(Vector2 oldVelocity)
+        public override bool PreKill(int timeLeft)
         {
-            Main.PlaySound(SoundID.Item10);
+            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, mod.ProjectileType("EpicExplosion"), projectile.damage, 0, Main.myPlayer, 0f, 0f); //Spawning a projectile
+            Main.PlaySound(SoundID.Item14.WithVolume(0.5f), (int)projectile.Center.X, (int)projectile.Center.Y);
             return true;
+
         }
+
+
     }
 }

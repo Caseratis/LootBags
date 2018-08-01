@@ -80,24 +80,20 @@
     <Compile Include="Projectiles\AdeptArrow.cs" />
     <Compile Include="Projectiles\AdeptStaffProj.cs" />
     <Compile Include="Projectiles\AdeptSwordProj.cs" />
-    <Compile Include="Projectiles\AdeptTrail.cs" />
     <Compile Include="Projectiles\ApprenticeStaffProj.cs" />
     <Compile Include="Projectiles\ApprenticeSwordProj.cs" />
     <Compile Include="Projectiles\EpicArrow.cs" />
     <Compile Include="Projectiles\EpicExplosion.cs" />
     <Compile Include="Projectiles\EpicStaffProj.cs" />
     <Compile Include="Projectiles\EpicSwordProj.cs" />
-    <Compile Include="Projectiles\EpicTrail.cs" />
     <Compile Include="Projectiles\GodlyArrow.cs" />
     <Compile Include="Projectiles\GodlyExplosion.cs" />
     <Compile Include="Projectiles\GodlyStaffProj.cs" />
     <Compile Include="Projectiles\GodlySwordProj.cs" />
-    <Compile Include="Projectiles\GodlyTrail.cs" />
     <Compile Include="Projectiles\LegendaryArrow.cs" />
     <Compile Include="Projectiles\LegendaryExplosion.cs" />
     <Compile Include="Projectiles\LegendaryStaffProj.cs" />
     <Compile Include="Projectiles\LegendarySwordProj.cs" />
-    <Compile Include="Projectiles\LegendaryTrail.cs" />
     <Compile Include="Projectiles\NoviceStaffProj.cs" />
   </ItemGroup>
   <ItemGroup>

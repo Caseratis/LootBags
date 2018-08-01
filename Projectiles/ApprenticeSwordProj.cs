@@ -16,11 +16,11 @@ namespace LootBags.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.width = 44;
-            projectile.height = 44;
+            projectile.width = 33;
+            projectile.height = 33;
             projectile.friendly = true;
             projectile.melee = true;
-            projectile.penetrate = 2;
+            projectile.penetrate = 1;
             projectile.timeLeft = 600;
             projectile.tileCollide = true;
             projectile.melee = true;
@@ -42,10 +42,6 @@ namespace LootBags.Projectiles
 
         }
 
-        public override bool OnTileCollide(Vector2 oldVelocity)
-        {
-            Main.PlaySound(SoundID.Item10);
-            return true;
-        }
+
     }
 }

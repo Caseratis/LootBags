@@ -35,5 +35,6 @@ namespace LootBags.Projectiles
             dust.noGravity = true;
             dust.scale = 2;
         }
+
     }
 }

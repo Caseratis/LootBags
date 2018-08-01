@@ -23,13 +23,13 @@ namespace LootBags.Projectiles
             projectile.penetrate = 1;
             projectile.timeLeft = 600;
             projectile.tileCollide = true;
-            projectile.alpha = 255;
+            projectile.alpha = 0;
         }
 
         public override void AI()
-        { 
-
-                Dust dust;
+        {
+            projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
+            Dust dust;
                 // You need to set position depending on what you are doing. You may need to subtract width/2 and height/2 as well to center the spawn rectangle.
                 Vector2 position = projectile.position + projectile.velocity;
                 dust = Main.dust[Terraria.Dust.NewDust(position, projectile.width, projectile.height, 91, 0f, 0f, 0, new Color(255, 255, 255), 1f)];

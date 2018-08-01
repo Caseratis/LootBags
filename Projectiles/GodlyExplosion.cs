@@ -12,6 +12,7 @@ namespace LootBags.Projectiles
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Godly Explosion");     //The English name of the projectile
+            
         }
 
         public override void SetDefaults()
@@ -19,8 +20,8 @@ namespace LootBags.Projectiles
             projectile.width = 100;
             projectile.height = 100;
             projectile.friendly = true;
-            projectile.penetrate = 10;
-            projectile.timeLeft = 180;
+            projectile.penetrate = 100;
+            projectile.timeLeft = 300;
             projectile.tileCollide = false;
             projectile.alpha = 255;
             projectile.usesLocalNPCImmunity = true;
@@ -29,7 +30,7 @@ namespace LootBags.Projectiles
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.immune[projectile.owner] = 0;
+            target.immune[projectile.owner] = 3;
         }
 
         public override void AI()

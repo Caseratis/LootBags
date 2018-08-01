@@ -10,7 +10,6 @@ namespace LootBags.Projectiles
 
     public class EpicStaffProj : ModProjectile
     {
-        int Timer;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Epic Staff Projectile");     //The English name of the projectile
@@ -22,21 +21,22 @@ namespace LootBags.Projectiles
             projectile.height = 25;
             projectile.friendly = true;
             projectile.magic = true;
-            projectile.penetrate = 4;
+            projectile.penetrate = 1;
             projectile.timeLeft = 600;
             projectile.tileCollide = true;
-            projectile.alpha = 255;
+            projectile.alpha = 0;
         }
+        public override bool PreKill(int timeLeft)
+        {
+            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, mod.ProjectileType("EpicExplosion"), projectile.damage, 0, Main.myPlayer, 0f, 0f); //Spawning a projectile
+            Main.PlaySound(SoundID.Item14.WithVolume(0.5f), (int)projectile.Center.X, (int)projectile.Center.Y);
+            return true;
 
+        }
         public override void AI()
         {
-            Timer++;
-            if (Timer == 10)
-            {
-                Timer = 0;
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, mod.ProjectileType("EpicTrail"), projectile.damage / 2, 0, Main.myPlayer, 0f, 0f); //Spawning a projectile
-            }
 
+            projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
             Dust dust;
             // You need to set position depending on what you are doing. You may need to subtract width/2 and height/2 as well to center the spawn rectangle.
             Vector2 position = projectile.position + projectile.velocity;

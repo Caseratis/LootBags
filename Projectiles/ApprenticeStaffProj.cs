@@ -20,15 +20,15 @@ namespace LootBags.Projectiles
             projectile.height = 15;
             projectile.friendly = true;
             projectile.magic = true;
-            projectile.penetrate = 2;
+            projectile.penetrate = 1;
             projectile.timeLeft = 600;
             projectile.tileCollide = true;
-            projectile.alpha = 255;
+            projectile.alpha = 0;
         }
 
         public override void AI()
         {
-
+            projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
             Dust dust;
             // You need to set position depending on what you are doing. You may need to subtract width/2 and height/2 as well to center the spawn rectangle.
             Vector2 position = projectile.position + projectile.velocity;
