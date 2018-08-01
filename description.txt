@@ -1,0 +1,17 @@
+Welcome to the Loot Bags Mod!
+This mod adds 7 different obtainable loot bags and 2 loot bag only items to your world. (+1 Secret Loot Bag that has a ridiculous new way of obtaining)
+
+The loot obtainable has been completely revamped. Click the homepage button for the list of items.
+The aim of the mod is to give you occasional rare items.
+
+Tier 1 - Beginning of Game
+Tier 2 - Post Skeletron
+Tier 3 - Post WoF
+Tier 4 - Post Mech Bosses
+Tier 5 - Post Golem
+Tier 6 - Post Moon Lord
+Dye - Drops from dye related enemies
+
+There are special weapons for each loot bag tier. The weapons get better as you go up the tiers.
+
+Big Thanks to Xray299 and seabass927 for amazing sprites and suggestions!

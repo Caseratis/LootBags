@@ -1,0 +1,9 @@
+author = Caseratis
+version = 1.0.0
+displayName = Loot Bags
+homepage = https://forums.terraria.org/index.php?threads/loot-bags-mod.55797/
+hideCode = false
+hideResources = false
+includeSource = true
+buildIgnore = *.csproj, *.user, *.psd, obj\*, bin\*, .vs\*
+includePDB = true
