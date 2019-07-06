@@ -1,129 +1,122 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System;
-using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.Serialization;
 using Terraria;
-using Terraria.IO;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Config;
+using Terraria.ModLoader.Config.UI;
+using Terraria.UI;
 
-public static class Config
+namespace LootBags
 {
-	public static int LootBag1DropChance = 25;
+    public class Config : ModConfig
+    {
+        public override ConfigScope Mode => ConfigScope.ServerSide;
 
-	public static int LootBag2DropChance = 30;
+        [Label("Tier 1 Loot Bag Drop Chance")]
+        [DefaultValue(25)]
+        public int LootBag1DropChance { get; set; }
 
-	public static int LootBag3DropChance = 35;
+        [Label("Tier 2 Loot Bag Drop Chance")]
+        [DefaultValue(30)]
+        public int LootBag2DropChance { get; set; }
 
-	public static int LootBag4DropChance = 40;
+        [Label("Tier 3 Loot Bag Drop Chance")]
+        [DefaultValue(35)]
+        public int LootBag3DropChance { get; set; }
 
-	public static int LootBag5DropChance = 45;
+        [Label("Tier 4 Loot Bag Drop Chance")]
+        [DefaultValue(40)]
+        public int LootBag4DropChance { get; set; }
 
-	public static int LootBag6DropChance = 50;
+        [Label("Tier 5 Loot Bag Drop Chance")]
+        [DefaultValue(45)]
+        public int LootBag5DropChance { get; set; }
 
-	public static int DyeBagDropChance = 3;
+        [Label("Tier 6 Loot Bag Drop Chance")]
+        [DefaultValue(50)]
+        public int LootBag6DropChance { get; set; }
 
-	public static int LootBag1Cost = 100000;
+        [Label("Dye Loot Bag Drop Chance")]
+        [DefaultValue(3)]
+        public int DyeBagDropChance { get; set; }
 
-	public static int LootBag2Cost = 200000;
+        [Label("Tier 1 Loot Bag Cost")]
+        [DefaultValue(100000)]
+        public int LootBag1Cost { get; set; }
 
-	public static int LootBag3Cost = 300000;
+        [Label("Tier 2 Loot Bag Cost")]
+        [DefaultValue(200000)]
+        public int LootBag2Cost { get; set; }
 
-	public static int LootBag4Cost = 400000;
+        [Label("Tier 3 Loot Bag Cost")]
+        [DefaultValue(300000)]
+        public int LootBag3Cost { get; set; }
 
-	public static int LootBag5Cost = 500000;
+        [Label("Tier 4 Loot Bag Cost")]
+        [DefaultValue(400000)]
+        public int LootBag4Cost { get; set; }
 
-	public static int LootBag6Cost = 2000000;
+        [Label("Tier 5 Loot Bag Cost")]
+        [DefaultValue(500000)]
+        public int LootBag5Cost { get; set; }
 
-	public static bool BuyLootBags = true;
+        [Label("Tier 6 Loot Bag Cost")]
+        [DefaultValue(2000000)]
+        public int LootBag6Cost { get; set; }
 
-	public static bool AllLootBagsDrop = false;
+        [Label("Tier 1 Core Drop Chance")]
+        [DefaultValue(20)]
+        public int Core1DropChance { get; set; }
 
-    public static int Core1DropChance = 20;
+        [Label("Tier 2 Core Drop Chance")]
+        [DefaultValue(20)]
+        public int Core2DropChance { get; set; }
 
-    public static int Core2DropChance = 20;
+        [Label("Tier 3 Core Drop Chance")]
+        [DefaultValue(20)]
+        public int Core3DropChance { get; set; }
 
-    public static int Core3DropChance = 20;
+        [Label("Tier 4 Core Drop Chance")]
+        [DefaultValue(20)]
+        public int Core4DropChance { get; set; }
 
-    public static int Core4DropChance = 20;
+        [Label("Tier 5 Core Drop Chance")]
+        [DefaultValue(20)]
+        public int Core5DropChance { get; set; }
 
-    public static int Core5DropChance = 20;
+        [Label("Tier 6 Core Drop Chance")]
+        [DefaultValue(20)]
+        public int Core6DropChance { get; set; }
 
-    public static int Core6DropChance = 20;
+        [Label("Can loot bags be bought?")]
+        [Tooltip("Reload Required")]
+        [ReloadRequired]
+        [DefaultValue(true)]
+        public bool BuyLootBags { get; set; }
 
-    public static bool LootBagCrafting = true;
+        [Label("Do all loot bag tiers always drop?")]
+        [Tooltip("(They are still affected by progression)")]
+        [DefaultValue(false)]
+        public bool AllLootBagsDrop { get; set; }
 
-    private static string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", "LootBagsConfig.json");
+        [Label("Allow crafting previous loot bag tiers?")]
+        [Tooltip("Reload Required")]
+        [ReloadRequired]
+        [DefaultValue(true)]
+        public bool LootBagCrafting { get; set; }
 
-	private static Preferences Configuration = new Preferences(Config.ConfigPath, false, false);
-
-	public static void Load()
-	{
-		if (!Config.ReadConfig())
-		{
-			ErrorLogger.Log("Failed to read Loot Bag config file! Recreating config...");
-			Config.CreateConfig();
-		}
-	}
-
-	private static bool ReadConfig()
-	{
-		bool result;
-		if (Config.Configuration.Load())
-		{
-			Config.Configuration.Get<int>("LootBag1DropChance", ref Config.LootBag1DropChance);
-			Config.Configuration.Get<int>("LootBag2DropChance", ref Config.LootBag2DropChance);
-			Config.Configuration.Get<int>("LootBag3DropChance", ref Config.LootBag3DropChance);
-			Config.Configuration.Get<int>("LootBag4DropChance", ref Config.LootBag4DropChance);
-			Config.Configuration.Get<int>("LootBag5DropChance", ref Config.LootBag5DropChance);
-			Config.Configuration.Get<int>("LootBag6DropChance", ref Config.LootBag6DropChance);
-			Config.Configuration.Get<int>("DyeBagDropChance", ref Config.DyeBagDropChance);
-			Config.Configuration.Get<int>("LootBag1Cost", ref Config.LootBag1Cost);
-			Config.Configuration.Get<int>("LootBag2Cost", ref Config.LootBag2Cost);
-			Config.Configuration.Get<int>("LootBag3Cost", ref Config.LootBag3Cost);
-			Config.Configuration.Get<int>("LootBag4Cost", ref Config.LootBag4Cost);
-			Config.Configuration.Get<int>("LootBag5Cost", ref Config.LootBag5Cost);
-			Config.Configuration.Get<int>("LootBag6Cost", ref Config.LootBag6Cost);
-			Config.Configuration.Get<bool>("BuyLootBags", ref Config.BuyLootBags);
-			Config.Configuration.Get<bool>("AllLootBagsDrop", ref Config.AllLootBagsDrop);
-            Config.Configuration.Get<int>("Core1DropChance", ref Config.Core1DropChance);
-            Config.Configuration.Get<int>("Core2DropChance", ref Config.Core2DropChance);
-            Config.Configuration.Get<int>("Core3DropChance", ref Config.Core3DropChance);
-            Config.Configuration.Get<int>("Core4DropChance", ref Config.Core4DropChance);
-            Config.Configuration.Get<int>("Core5DropChance", ref Config.Core5DropChance);
-            Config.Configuration.Get<int>("Core6DropChance", ref Config.Core6DropChance);
-            Config.Configuration.Get<bool>("LootBagCrafting", ref Config.LootBagCrafting);
-            result = true;
-		}
-		else
-		{
-			result = false;
-		}
-		return result;
-	}
-
-	private static void CreateConfig()
-	{
-		Config.Configuration.Clear();
-		Config.Configuration.Put("LootBag1DropChance", Config.LootBag1DropChance);
-		Config.Configuration.Put("LootBag2DropChance", Config.LootBag2DropChance);
-		Config.Configuration.Put("LootBag3DropChance", Config.LootBag3DropChance);
-		Config.Configuration.Put("LootBag4DropChance", Config.LootBag4DropChance);
-		Config.Configuration.Put("LootBag5DropChance", Config.LootBag5DropChance);
-		Config.Configuration.Put("LootBag6DropChance", Config.LootBag6DropChance);
-		Config.Configuration.Put("DyeBagDropChance", Config.DyeBagDropChance);
-		Config.Configuration.Put("LootBag1DropChance", Config.LootBag1DropChance);
-		Config.Configuration.Put("LootBag2DropChance", Config.LootBag2DropChance);
-		Config.Configuration.Put("LootBag3DropChance", Config.LootBag3DropChance);
-		Config.Configuration.Put("LootBag4DropChance", Config.LootBag4DropChance);
-		Config.Configuration.Put("LootBag5DropChance", Config.LootBag5DropChance);
-		Config.Configuration.Put("LootBag6DropChance", Config.LootBag6DropChance);
-		Config.Configuration.Put("BuyLootBags", Config.BuyLootBags);
-		Config.Configuration.Put("AllLootBagsDrop", Config.AllLootBagsDrop);
-        Config.Configuration.Put("Core1DropChance", Config.Core1DropChance);
-        Config.Configuration.Put("Core2DropChance", Config.Core2DropChance);
-        Config.Configuration.Put("Core3DropChance", Config.Core3DropChance);
-        Config.Configuration.Put("Core4DropChance", Config.Core4DropChance);
-        Config.Configuration.Put("Core5DropChance", Config.Core5DropChance);
-        Config.Configuration.Put("Core6DropChance", Config.Core6DropChance);
-        Config.Configuration.Put("LootBagCrafting", Config.LootBagCrafting);
-        Config.Configuration.Save(true);
-	}
+        public override void OnLoaded()
+        {
+            LootBags.config = this;
+        }
+    }
 }

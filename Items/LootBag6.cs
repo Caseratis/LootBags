@@ -44,7 +44,7 @@ namespace LootBags.Items
             if (result.type == 6)
             {
                 player.QuickSpawnItem(result.item, result.amount);
-                int RanCore = new Random().Next(0, Config.Core6DropChance);
+                int RanCore = new Random().Next(0, LootBags.config.Core6DropChance);
                 if (RanCore == 0)
                 {
                     player.QuickSpawnItem(mod.ItemType("GodlyCore"));

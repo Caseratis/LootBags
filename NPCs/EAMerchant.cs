@@ -58,7 +58,7 @@ namespace LootBags.NPCs
 
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
-            if (NPC.downedBoss3 || Main.hardMode == true && Config.BuyLootBags)
+            if (NPC.downedBoss3 || Main.hardMode == true && LootBags.config.BuyLootBags)
             {
                 return true;
             }
@@ -118,31 +118,31 @@ namespace LootBags.NPCs
             if (NPC.downedBoss3)
             {
                 shop.item[nextSlot].SetDefaults(mod.ItemType("LootBag1"));
-                shop.item[nextSlot].shopCustomPrice = Config.LootBag1Cost;
+                shop.item[nextSlot].shopCustomPrice = LootBags.config.LootBag1Cost;
                 nextSlot++;
             }
             if (Main.hardMode)
             {
                 shop.item[nextSlot].SetDefaults(mod.ItemType("LootBag2"));
-                shop.item[nextSlot].shopCustomPrice = Config.LootBag2Cost;
+                shop.item[nextSlot].shopCustomPrice = LootBags.config.LootBag2Cost;
                 nextSlot++;
             }
             if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
             {
                 shop.item[nextSlot].SetDefaults(mod.ItemType("LootBag3"));
-                shop.item[nextSlot].shopCustomPrice = Config.LootBag3Cost;
+                shop.item[nextSlot].shopCustomPrice = LootBags.config.LootBag3Cost;
                 nextSlot++;
             }
             if (NPC.downedGolemBoss)
             {
                 shop.item[nextSlot].SetDefaults(mod.ItemType("LootBag4"));
-                shop.item[nextSlot].shopCustomPrice = Config.LootBag4Cost;
+                shop.item[nextSlot].shopCustomPrice = LootBags.config.LootBag4Cost;
                 nextSlot++;
             }
             if (NPC.downedMoonlord)
             {
                 shop.item[nextSlot].SetDefaults(mod.ItemType("LootBag5"));
-                shop.item[nextSlot].shopCustomPrice = Config.LootBag5Cost;
+                shop.item[nextSlot].shopCustomPrice = LootBags.config.LootBag5Cost;
                 nextSlot++;
             }
         }

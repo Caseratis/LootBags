@@ -9,6 +9,7 @@ namespace LootBags
     class LootBags : Mod
     {
         public static Dictionary<string, LootNode> lootTables = new Dictionary<string, LootNode>();
+        internal static Config config;
 
         public LootBags()
         {
@@ -56,18 +57,19 @@ namespace LootBags
         }
         
 
-        public static string ConfigFileRelativePath
+        public override void Unload()
         {
-            get { return "Mod Configs/My Mod's Config.json"; }
-        }
-        public static void ReloadConfigFromFile()
-        {
-            // Define implementation to reload your mod's config data from file
+            config = null;
+            
         }
 
-        public override void Load()
+        public override void PostSetupContent()
         {
-            Config.Load();
+            Mod censusMod = ModLoader.GetMod("Census");
+            if (censusMod != null)
+            {
+                censusMod.Call("TownNPCCondition", NPCType("Loot Bag Dealer"), "Eye of Cthulhu is defeated");
+            }
         }
     }
 }

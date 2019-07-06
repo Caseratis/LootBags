@@ -36,7 +36,7 @@ namespace LootBags.Items
 
         public override void AddRecipes()
         {
-            if (Config.LootBagCrafting == true)
+            if (LootBags.config.LootBagCrafting == true)
             {
                 ModRecipe recipe = new ModRecipe(mod);
                 recipe.AddIngredient(null, "LootBag3", 1);
@@ -62,7 +62,7 @@ namespace LootBags.Items
             if (result.type == 2)
             {
                 player.QuickSpawnItem(result.item, result.amount);
-                int RanCore = new Random().Next(0, Config.Core2DropChance);
+                int RanCore = new Random().Next(0, LootBags.config.Core2DropChance);
                 if (RanCore == 0)
                 {
                     player.QuickSpawnItem(mod.ItemType("ApprenticeCore"));
