@@ -8,3 +8,5 @@ bin
 *.csproj
 *.user
 *.sln
+*.gitattributes
+*.gitignore
