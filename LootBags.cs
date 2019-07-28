@@ -60,7 +60,6 @@ namespace LootBags
         public override void Unload()
         {
             config = null;
-            
         }
 
         public override void PostSetupContent()

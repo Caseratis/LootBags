@@ -1,5 +1,5 @@
 author = Caseratis
-version = 1.0.1
+version = 1.1
 displayName = Loot Bags
 homepage = https://forums.terraria.org/index.php?threads/loot-bags-mod.55797/
 hideCode = false
